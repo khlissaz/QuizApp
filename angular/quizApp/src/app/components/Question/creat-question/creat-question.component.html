@@ -1,0 +1,157 @@
+<div class="container">
+
+
+	<div class="row">
+		<div class="col-2">
+		</div>
+
+		<div class="card col-8 sm offset-s5 center-align">
+
+			<form [formGroup]="creatQForm" class="md-form" (ngSubmit)="onSubmit(creatQForm)">
+				<fieldset class="form-group">
+
+
+					<div class="input-field">
+
+						<input type="text" mdbValidate class="form-control" placeholder="Nouvelle question" autofocus
+							formControlName="questionText"
+							[ngClass]="{ 'is-invalid': submitted && f.questionText.errors }" required />
+						<div *ngIf="submitted && f.questionText.errors" class="invalid-feedback">
+							<div *ngIf="f.questionText.errors.required">Question text is required</div>
+						</div>
+					</div>
+					<ul class="list-group" formArrayName="options"
+						*ngFor="let option of creatQForm.get('options').controls; let i=index">
+						<div [formGroupName]="i">
+							<li class="list-group-item" ng-repeat="answer in newQuestion.answers"
+								ng-class="{ 'is-correct': answer.isCorrect }">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Nouvelle proposition"
+										formControlName="option1"
+										[ngClass]="{ 'is-invalid': submitted && f.options.option1.errors }" required />
+									<div *ngIf="submitted && f.options.option1.errors" class="invalid-feedback">
+										<div *ngIf="f.options.option1.errors.required">Option is required</div>
+									</div>
+
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Nouvelle proposition"
+										formControlName="option2"
+										[ngClass]="{ 'is-invalid': submitted && f.options.option2.errors }" required />
+									<div *ngIf="submitted && f.options.option2.errors" class="invalid-feedback">
+										<div *ngIf="f.options.option2.errors.required">Option is required</div>
+									</div>
+
+								</div>
+
+							</li>
+							<li class="list-group-item">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Nouvelle proposition"
+										formControlName="option3"
+										[ngClass]="{ 'is-invalid': submitted && f.options.option3.errors }" required />
+									<div *ngIf="submitted && f.options.option3.errors" class="invalid-feedback">
+										<div *ngIf="f.options.option3.errors.required">Option is required</div>
+									</div>
+
+								</div>
+
+							</li>
+							<li class="list-group-item">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Nouvelle proposition"
+										formControlName="option4"
+										[ngClass]="{ 'is-invalid': submitted && f.options.option4.errors }" required />
+									<div *ngIf="submitted && f.options.option4.errors" class="invalid-feedback">
+										<div *ngIf="f.options.option4.errors.required">Option is required</div>
+									</div>
+
+
+								</div>
+
+							</li>
+
+						</div>
+
+					</ul>
+					<div class="panel panel-default">
+						<div class="input-field">
+
+							<input type="text" class="form-control" placeholder="La reponse" autofocus
+								autocomplete="off" formControlName="answer"
+								[ngClass]="{ 'is-invalid': submitted && f.answer.errors }" required />
+							<div *ngIf="submitted && f.answer.errors" class="invalid-feedback">
+								<div *ngIf="f.answer.errors.required">Answer is required</div>
+							</div>
+						</div>
+
+
+					</div>
+
+					<div>
+						<div class="panel panel-default">
+							<div class="input-field">
+
+								<input type="text" class="form-control" placeholder="La solution"
+									formControlName="solution"
+									[ngClass]="{ 'is-invalid': submitted && f.solution.errors }" required />
+
+								<div *ngIf="submitted && f.solution.errors" class="invalid-feedback">
+									<div *ngIf="f.solution.errors.required">Solution is required</div>
+								</div>
+							</div>
+
+
+
+						</div>
+
+					</div>
+
+					<div>
+
+						<div class="panel panel-default">
+							<div class="input-field">
+
+								<input type="text" id="category" class="form-control" placeholder="La categorie"
+									autofocus autocomplete="on" formControlName="category"
+									[ngClass]="{ 'is-invalid': submitted && f.categorie.errors }" required />
+								<div *ngIf="submitted && f.categorie.errors" class="invalid-feedback">
+									<div *ngIf="f.categorie.errors.required">Categorie is required</div>
+								</div>
+
+
+							</div>
+						</div>
+						<div>
+
+							<div class="panel panel-default">
+								<div class="input-field">
+
+									<input type="text" id="difficultyLevel" class="form-control"
+										placeholder="Le niveau de difficulté" autofocus autocomplete="on"
+										formControlName="difficultyLevel"
+										[ngClass]="{ 'is-invalid': submitted && f.difficultyLevel.errors }" required />
+									<div *ngIf="submitted && f.difficultyLevel.errors" class="invalid-feedback">
+										<div *ngIf="f.difficultyLevel.errors.required">DifficultyLevel is required</div>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						<div class="panel-footer text-center">
+							<button class="btn btn-outline-info btn-rounded  my-4 waves-effect z-depth-0"
+								type="submit"><span class="glyphicon glyphicon-plus"></span> Ajouter la
+								question</button>
+						</div>
+
+
+					</div>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,91 @@
+<div class="container">
+
+
+    <div class="jumbotron">
+
+        <div class="question-container">
+            <form>
+                <div class="col-md-4">
+                    <h5>{{currentQuiz.name}}</h5>
+                </div>
+                <div class="col-md-12 p-3 mb-2 bg-warning text-white">
+                    <h5 class=""> {{this.question.questionText}}</h5>
+                </div>
+                <hr class="my-4">
+
+                <div class="row">
+                    <div class="col-md-3 offset-md-1 mx-3 my-3">
+                        <div class="view overlay">
+                            <div class="red-text"><i class="fa fa-clock-o pr-1"></i> Timer :
+                                {{this.displayTimeElapsed()}}</div>
+                            <br>
+                            <div class="red-text"><i class="fa fa-question-circle pr-1"></i> Question:
+                                {{this.i+1}}/{{currentQuiz.questions.length}}</div>
+                            <br>
+                            <div class="red-text"><i class="fa fa-signal pr-1"></i> Niveau:
+                                {{currentQuiz.difficultyLevel}}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 text-md-left ml-3 mt-3">
+
+                        <div class="form border-left border-warning"
+                            *ngFor="let option of question.options; let i = index ">
+                            <div class="wrap">
+                                <div class="RadioBtnsWrap">
+                                    <div class="inputGroup">
+                                        <input id="radio1" type="radio" name="radio" id="radio1" class="with-gap"
+                                            ng-model="option.option1" (click)="check(option.option1)">
+                                        <label for="radio1"> {{option.option1}}</label>
+                                    </div>
+                                    <div class="inputGroup">
+                                        <input id="radio2" type="radio" name="radio" id="radio2" class="with-gap"
+                                            ng-model="option.option2" (click)="check(option.option2)">
+                                        <label for="radio2">{{option.option2}}</label>
+                                    </div>
+                                    <div class="inputGroup">
+                                        <input id="radio3" type="radio" name="radio" id="radio3" class="with-gap"
+                                            ng-model="option.option3" (click)="check(option.option3)">
+                                        <label for="radio3">{{option.option3}}</label>
+                                    </div>
+                                    <div class="inputGroup">
+                                        <input id="radio4" type="radio" name="radio" id="radio4" class="with-gap"
+                                            ng-model="option.option4" (click)="check(option.option4)">
+                                        <label for="radio4">{{option.option4}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+            <div class="clearfix">
+                <button class="btn btn-outline-warning btn-rounded" style="float:right" size="lg" (click)="previous()"
+                    *ngIf="i>0"><i class="fa fa-chevron-circle-left"></i> Previous
+                </button>
+                <button class="btn btn-outline-warning btn-rounded" size="lg" (click)="next()" *ngIf="i<(quizlength-1)">
+                    Next <i class="fa fa-chevron-circle-right"></i>
+                </button>
+            </div>
+            <div>
+
+                <button class="btn peach-gradient" (click)="generatemark()">Terminer le test</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle=tooltip]').hover(function () {
+            // on mouseenter
+            $(this).tooltip('show');
+        }, function () {
+            // on mouseleave
+            $(this).tooltip('hide');
+        });
+    });
+</script>

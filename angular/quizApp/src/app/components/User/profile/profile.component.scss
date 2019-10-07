@@ -1,0 +1,29 @@
+.links{
+    list-style-type: none;
+    padding: 30px;
+}
+.links > li:hover {
+    background-color: #cc990d;
+}
+.links > li:hover>a {
+    color: #fff;
+}
+.links > li {
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #f7aa05;
+    margin: 10px;
+}
+a {
+    color: #eea70d;
+    line-height: 46px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.card{
+    list-style-type: none;
+    padding: 30px;
+}

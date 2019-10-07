@@ -1,0 +1,254 @@
+<div class="container">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Quiz table</h3>
+
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <div class="col-md-12 mx-auto">
+        <div class="row">
+
+
+          <button button type="button" class="btn btn-outline-warning" routerLink="/createTest"><i
+              class="fa fa-plus"></i> add</button>
+
+        </div>
+        <input class="form-control my-0 py-1 amber-border" [(ngModel)]="searchText" placeholder="Search"
+          autocomplete="off">
+        <br>
+        <table id="table1" mdbTable mdbTableScroll bordered="true">
+          <thead class="grey white-text">
+            <tr>
+
+
+              <th scope="col">Catégory</th>
+              <th scope="col">Description</th>
+              <th scope="col">Nombre des questions</th>
+              <th scope="col">Date de test</th>
+              <th scope="col">Difficulty leve</th>
+              <th>Opérations</th>
+              <th></th>
+              <th>Ajout/Edit Questions</th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="let quiz of quizzes | filter:searchText | paginate: { itemsPerPage:10, currentPage:p}; let i = index ">
+            <tr>
+
+
+              <td> {{quiz.category}}</td>
+              <td> {{quiz.description}}</td>
+              <td>{{quiz.questions.length}}</td>
+              <td>{{quiz.dateTest| date : 'medium'}}</td>
+              <td>{{quiz.difficultyLevel}}</td>
+              <td>
+                <a (click)="edit(quiz)" data-toggle="modal" data-target="#edit"
+                    class="text-dark">
+                    <mat-icon>launch</mat-icon>
+                  </a> 
+                 <a (click)="deleteQCM(quiz)" class="text-danger">
+                    <mat-icon>delete_outline</mat-icon>
+                  </a>
+              </td>
+              <td>
+
+
+                <button class="btn peach-gradient" (click)="startQCM(quiz)"> Commencer le test
+                </button>
+              <td><button type="button" class="btn btn-outline-warning" rounded="true" (click)=affect_desaffect(quiz)
+                  data-toggle="modal" data-target="#list_q">Ajouter ou modifier les
+                  questions</button>
+              </td>
+
+
+            </tr>
+          </tbody>
+          <tfoot class="grey lighten-5 w-100">
+            <tr>
+              <td colspan="8">
+                <pagination-controls (pageChange)="p=$event"></pagination-controls>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--Modal Edit-->
+<div id="edit" class="modal fade" tabindex="-1" role="dialog">
+
+
+  <div class="modal-dialog" role="document">
+
+
+    <!-- Modal Edit content-->
+
+
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+
+      </div>
+
+      <div class="modal-body">
+
+
+        <h5 class="card-header  black-text text-center py-4">
+          <p class="h3 mb-4">Modify Quiz</p>
+        </h5>
+        <form [formGroup]="ModQCMForm" class="md-form" (ngSubmit)="update()">
+
+          <input class="form-control" autocomplete="off" formControlName="id" hidden>
+          <div class="form-group">
+
+            <input class="form-control" autofocus autocomplete="off" formControlName="name" required>
+          </div>
+          <div class="form-group">
+
+
+            <textarea placeholder="Description" formControlName="description" class="form-control"
+              id="exampleFormControlTextarea1" rows="3" required></textarea>
+
+          </div>
+          <div class="form-group">
+
+            <input class="form-control" autofocus autocomplete="off" formControlName="category" required>
+          </div>
+
+
+          <div class="form-group">
+
+            <select class="form-control" formControlName="difficulty" id="difficulty">
+              <option value="" disabled selected>Select Difficulty level</option>
+              <option value="H">Hard</option>
+              <option value="M">Medium</option>
+              <option value="E">Easy</option>
+            </select>
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-outline-warning" type="submit"><span class="glyphicon glyphicon-plus"></span> Save
+              changes</button>
+
+
+          </div>
+
+
+
+
+
+        </form>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>
+<!--Modal-->
+<div id="list_q" class="modal fade" tabindex="-1" role="dialog">
+
+
+  <div class="modal-dialog modal-dialog-scrollable  modal-lg" role="document">
+
+    <!-- Modal list questions content-->
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+
+      </div>
+
+      <div class="modal-body">
+
+
+        <h5 class="card-header  black-text text-center py-4">
+          <p class="h3 mb-4">Ajout/Supprime question</p>
+        </h5>
+        <form class="md-form ">
+          <mdb-card>
+            <mdb-card-header>List questions</mdb-card-header>
+
+            <div class="row">
+
+              <div class="form-group">
+                <div class="col-md-6">
+
+                  <select class="custom-select custom-select-lg mb-3" style="width:200px;" [(ngModel)]="selectedCat"
+                    [ngModelOptions]="{standalone: true}" placeholder="Choose your category">
+                    <option value="" selected> All Categories </option>
+                    <option *ngFor=" let cat of Cats; let i=index" [value]="cat">{{cat}}</option>
+
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <mdb-card-body>
+              <table id="table3" class="table table-striped table-bordered table-sm" width="100%">
+
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+
+                    <th scope="col">questionText</th>
+                    <th scope="col">difficulty Level</th>
+                    <th scope="col">Ajout/Supprim question</th>
+                  </tr>
+                </thead>
+
+                <tbody
+                  *ngFor="let question  of questions | filter:selectedCat  | paginate: { itemsPerPage:5, currentPage:p1} ; let i = index">
+                  <tr>
+                    <th>{{i+1}}</th>
+
+                    <td>{{question.category}}</td>
+
+                    <td>{{question.questionText}}</td>
+                    <td>{{question.difficultyLevel}}</td>
+
+                    <td>
+                      <button class="btn btn-outline-primary" *ngIf="!isAffect(question._id)"
+                        (click)="affectQuestion(question._id)">Ajouter</button>
+
+                      <button class="btn btn-outline-danger" *ngIf="isAffect(question._id)"
+                        (click)="desaffectQuestion(question._id)">Supprimer</button>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+                <tfoot class="grey lighten-5 w-100">
+                  <tr>
+                    <td colspan="8">
+                      <pagination-controls (pageChange)="p1=$event"></pagination-controls>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </mdb-card-body>
+          </mdb-card>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>

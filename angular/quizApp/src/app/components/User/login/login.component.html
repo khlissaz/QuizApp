@@ -1,0 +1,74 @@
+<header class="header">
+    
+        <!-- Default form login -->
+
+        <div class="row">
+            <div class="col-4"></div>
+
+            <div class="card col-4 sm offset-s5 center-align">
+
+
+
+                <h5 class="card-header  black-text text-center py-4">
+                    <p class="h3 mb-4">Sign in</p>
+                </h5>
+
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-0">
+
+                    <form class="text-center " [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+                        <div class="md-form">
+
+                            <!-- User Name -->
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="icon_prefix" mdbValidate type="text" formControlName="userName"
+                                    id="defaultLoginFormUserName" class="form-control" placeholder="User-name"
+                                    minLength="8" maxLength="25"
+                                    [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" required>
+                                <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">User name is required</div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Password -->
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">lock</i>
+                                <input mdbInput mdbValidate type="password" matInput formControlName="password"
+                                    id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Sign in button -->
+                            <button class="btn btn-outline-warning btn-rounded  my-4 waves-effect z-depth-0"
+                                type="submit">Sign
+                                in</button>
+
+                            <div class="modal-footer display-footer">
+
+                                <div class="text-center text-md-left mt-1">
+                                    <p class="text-center"> Not a member?
+                                        <a href="/register" class="blue-text">Sign Up</a></p>
+
+
+                                   
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    
+</header>
+<!-- Default form login -->

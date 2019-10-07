@@ -1,0 +1,108 @@
+<header class="header ">
+  <div class="container">
+
+    <!-- Material form register -->
+    <div class="row">
+
+      <div class="col-3"></div>
+
+      <div class="card col-6 sm offset-s2 center-align">
+
+        <h5 class="card-header l black-text text-center py-4">
+          <p class="h3 mb-4">AJOUTER UTILISATEUR</p>
+        </h5>
+
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+
+          <!-- Form -->
+          <form class="text-center" style="color: #757575;" [formGroup]="registreForm" (ngSubmit)="onSubmit()">
+
+
+            <div class="md-form">
+
+
+              <div class="form-row">
+                <div class="col">
+                  <!-- First name -->
+                  <div class="input-field col s6">
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="First-name"
+                      [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstName.errors.required">First name is required</div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col">
+                  <!-- Last name -->
+                  <div class="input-field col s6">
+                    <input type="text" id="materialRegisterFormLastName" class="form-control" formControlName="lastName"
+                      placeholder="Last-name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                      <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- User name -->
+
+              <div class="input-field col s6">
+                <input type="text" id="materialRegisterFormUserName" class="form-control" formControlName="userName"
+                  placeholder="User-name" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                  <div *ngIf="f.userName.errors.required">User name is required</div>
+                </div>
+
+              </div>
+
+
+              <!-- E-mail -->
+              <div class="input-field col s6">
+                <input type="email" id="materialRegisterFormEmail" class="form-control" formControlName="email"
+                  [pattern]="emailPattern" placeholder="E-mail" data-error="Invalid email!!" required
+                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                </div>
+
+              </div>
+
+              <!-- Password -->
+              <div class="input-field col s6">
+                <input type="password" id="materialRegistreFormPassword" class="form-control" formControlName="password"
+                  placeholder="Password" required minlength="8"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                </div>
+
+                <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                  At least 8 characters
+                </small>
+              </div>
+
+             
+
+              <button class="btn btn-outline-warning btn-rounded  my-4 waves-effect z-depth-0"
+                type="submit">Add</button>
+
+
+              <p><a href="/login" class="blue-text">Sign In</a></p>
+
+
+
+            </div>
+          </form>
+          <!-- Form -->
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</header>

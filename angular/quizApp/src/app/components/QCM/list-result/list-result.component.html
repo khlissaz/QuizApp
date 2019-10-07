@@ -1,0 +1,31 @@
+<div class="container">
+
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4"> Quizzes Results list: </h3>
+  <input class="form-control my-0 py-1 " [(ngModel)]="searchText" placeholder="Search" style="width: 400px"
+    autocomplete="off">
+  <br>
+  <div class="mat-elevation-z8">
+    <table mdbTable mdbTableScroll bordered="true">
+      <thead>
+        <tr>
+
+
+          <th scope="col">Name</th>
+          <th scope="col">User</th>
+          <th scope="col">Date de test</th>
+          <th scope="col">Score</th>
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let result of results | filter:searchText ">
+        <tr>
+
+          <td> {{result.name}}</td>
+          <td> {{result.user.userName}}</td>
+          <td>{{result.date| date : 'medium'}}</td>
+          <td>{{result.score}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>

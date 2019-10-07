@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="jumbotron">
+
+        <div class="row">
+            <div class="col-ms-7 " style="width: 70%">
+                <div class=" card ">
+
+                    <div class="card-header"> Vous avez terminez le test <strong>{{currentResult.name}}</strong></div>
+                    <div class="card-body text-center">
+
+                        <h4> {{this.currentUser.lastName}} {{this.currentUser.firstName}}</h4>
+                        <br>
+                        vous avez obtenu
+                        {{currentResult.score}}/ {{currentQuiz.questions.length}}
+                    </div>
+                    <div class="card-footer bg-transparent border-warning"><button style="width:200px;" type="button"
+                            class="btn btn-outline-warning" [routerLink]="['/quizitem']" data-toggle="modal"
+                            data-target="#edit">Recommencer le test</button></div>
+
+                </div>
+            </div>
+            <div class="col-ms-5 card bg-warning" style="width: 30%">
+
+                <div class="card-header">Liens</div>
+                <a class="card-link" [routerLink]="['/']">Home</a>
+                <a [routerLink]="['/profile']">Voir votre profile</a>
+                <a [routerLink]="['/categorie']">Choisir d'autres tests</a>
+                <a [routerLink]="['/login']">Logout</a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<!--Navbar-->
+
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark black sticky-top  ">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="javascript:void(0)" routerLink="/"><img
+        style="width: 50px;height:50px" src="./../../../assets/images/quizz.png"></a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" routerLink="/categorie" mdbWavesEffect>Catégories</a>
+      </li>
+
+
+
+
+    </ul>
+    <ul class="nav md-pills nav-justified pills-info">
+
+      <li class="nav-item">
+
+        <div class="nav-link">
+
+          <div *ngIf="!authService.currentUser ">
+            <button class="btn btn-outline-warning btn-rounded" type="button" color="#FFFFFF" outline="true"
+              rounded="true" routerLink="/login"><i class="fa fa-lock"></i> Log In</button>
+
+          </div>
+
+
+          <div class="btn-group" mdbDropdown
+            *ngIf="this.authService.currentUser && this.authService.currentUser.role==='Admin'">
+            <a mdbDropdownToggle type="button" color="warning" outline="true" mdbWavesEffect>
+              <button class="btn btn-outline-warning btn-rounded" type="button" color="#FFFFFF" outline="true"
+                rounded="true"><i class="fa fa-cogs"></i>
+                Tools <i class="fa fa-chevron-circle-down"></i></button>
+
+            </a>
+
+            <div class="dropdown-menu dropdown-primary">
+              <a class="dropdown-item" routerLink="/listusers">Users</a>
+              <a class="dropdown-item" routerLink="/listquestions">Questions</a>
+              <a class="dropdown-item" routerLink="/quizzes">Quizzes</a>
+              <a class="dropdown-item" routerLink="/listresults">Quizzes passés</a>
+
+
+
+            </div>
+
+          </div>
+          <div class="btn-group" mdbDropdown *ngIf="authService.currentUser">
+            <a mdbDropdownToggle type="button" color="#FFFFFF" outline="true" mdbWavesEffect>
+              <button class="btn btn-outline-warning"> <i class="fa fa-user"></i>
+                {{this.authService.currentUser.firstName}} {{this.authService.currentUser.lastName}}
+                <i class="fa fa-chevron-circle-down"></i>
+              </button> </a>
+
+            <div class="dropdown-menu dropdown-primary">
+              <a class="dropdown-item" *ngIf="this.authService.currentUser.role==='Admin'"
+                routerLink="/admin">Dashboard</a>
+              <a class="dropdown-item" routerLink="/profile">Mon profile</a>
+              <a class="dropdown-item" (click)="authService.logout()">Logout</a>
+
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+
+    </ul>
+  </links>
+
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

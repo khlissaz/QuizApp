@@ -1,0 +1,68 @@
+<div class="container-fluid">
+
+
+  <div class="row">
+    <div class="col-3"></div>
+
+    <div class="card col-6 sm offset-s5 center-align">
+      <h5 class="card-header  black-text text-center py-4">
+        <p class="h3 mb-4">Create Quiz</p>
+      </h5>
+      <form [formGroup]="creatQCMForm" class="md-form" (ngSubmit)="addQCM(creatQCMForm)">
+
+
+        <div class="panel panel-default">
+
+
+          <div class="panel-heading">
+
+            <input id="new-question" class="form-control" placeholder="Name_quiz" autofocus autocomplete="off"
+              formControlName="name" required>
+          </div>
+          <div class="panel-heading">
+
+
+            <textarea placeholder="Description" formControlName="description" class="form-control"
+              id="exampleFormControlTextarea1" rows="3" required></textarea>
+
+          </div>
+
+
+
+          <div class="panel-heading">
+
+            <input id="new-question" class="form-control" placeholder="Category" autofocus autocomplete="off"
+              formControlName="category" required>
+          </div>
+
+          <div class="panel-heading">
+
+            <select class="form-control" formControlName="difficulty" placeholder="Difficulty level" id="difficulty">
+              <option value="" disabled selected>Select Difficulty level</option>
+              <option value="H">Hard</option>
+              <option value="M">Medium</option>
+              <option value="E">Easy</option>
+            </select>
+
+          </div>
+
+          <div class="panel-heading">
+
+            <input type="date" class="form-control" placeholder="Date" autofocus autocomplete="off"
+              formControlName="date" required>
+          </div>
+
+          <div class="panel-footer text-center">
+            <button class="btn btn-outline-danger btn-rounded  my-4 waves-effect z-depth-0" type="submit"><span
+                class="glyphicon glyphicon-plus"></span> Ajouter Quiz</button>
+
+
+          </div>
+
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>

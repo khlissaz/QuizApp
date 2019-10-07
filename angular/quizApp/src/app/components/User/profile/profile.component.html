@@ -1,0 +1,182 @@
+<div class="container">
+   
+    <div class="raw">
+        <div class="col-ms-8">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-ms-7 " style="width: 70%">
+                        <div class=" card ">
+
+                            <div class="card-header"> <strong>Informations personnelles:</strong></div>
+                            <div class="card-body">
+                                <p class="card-text">User name: {{currentUser.userName}} </p>
+                                <p class="card-text">Name : {{currentUser.firstName}} {{currentUser.lastName}}</p>
+                                    <p class="card-text">Email: {{currentUser.email}} </p>
+                            </div>
+                            <div class="card-footer bg-transparent border-warning"><button style="width:200px;"
+                                type="button" class="btn btn-outline-warning" (click)="edit(currentUser)"
+                                    data-toggle="modal" data-target="#edit">Modifier</button></div>
+
+                        </div>
+                    </div>
+                    <div class="col-ms-5 card bg-warning" style="width: 30%">
+
+                        <div class="card-header">Liens</div>
+                        <a class="card-link" [routerLink]="['/']">Home</a>
+                        <a [routerLink]="['/quizitem']">Recommencer le test</a>
+                        <a [routerLink]="['/categorie']">Choisir d'autres tests</a>
+
+                        <a [routerLink]="['/login']">Logout</a>
+
+                    </div>
+
+                </div>
+                <br>
+                <div class=" card-columns">
+
+                    <!-- Panel -->
+                    <ul class="links" *ngFor="let result of results ; let i = index">
+                        <li class="card mimosa mb-4 ">
+
+
+                            <div class="card-body">
+                                <div class="pull-right">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+
+                                <p>{{result.date| date : 'medium'}}</p>
+                                <p>{{result.name}}</p>
+                                <h4>{{result.score}}/{{result.answers.length}}</h4>
+                            </div>
+
+                        </li>
+                    </ul>
+
+                   
+                </div>
+                <!-- Panel -->
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!--Modal-->
+<div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+
+    <div class="modal-dialog modal-dialog-scrollable  modal-lg" role="document">
+        <!-- Modal content-->
+
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <h5 class="card-header  black-text text-center py-4">
+                    Modify Question
+                </h5>
+                <!-- Form -->
+                <form class="text-center" style="color: #757575;" [formGroup]="ModForm" (ngSubmit)="updateUser( )">
+                    <input type="text" formControlName="id" hidden>
+
+                    <div class="md-form">
+
+
+                        <div class="form-row">
+                            <div class="col">
+                                <!-- First name -->
+                                <div class="input-field col s6">
+                                    <input type="text" class="form-control" formControlName="firstName"
+                                        placeholder="First-name"
+                                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors}" />
+                                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.firstName.errors.required">First name is required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Last name -->
+                                <div class="input-field col s6">
+                                    <input type="text" id="materialRegisterFormLastName" class="form-control"
+                                        formControlName="lastName" placeholder="Last-name"
+                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- User name -->
+
+                        <div class="input-field col s6">
+                            <input type="text" id="materialRegisterFormUserName" class="form-control"
+                                formControlName="userName" placeholder="User-name"
+                                [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+                            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                                <div *ngIf="f.userName.errors.required">User name is required</div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- E-mail -->
+                        <div class="input-field col s6">
+                            <input type="email" id="materialRegisterFormEmail" class="form-control"
+                                formControlName="email" [pattern]="emailPattern" placeholder="E-mail"
+                                data-error="Invalid email!!" required
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                            </div>
+
+                        </div>
+
+                        <!-- Password -->
+                        <div class="input-field col s6">
+                            <input type="password" id="materialRegistreFormPassword" class="form-control"
+                                formControlName="password" placeholder="Password" required minlength="8"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            </div>
+
+                            <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                                At least 8 characters
+                            </small>
+                        </div>
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        <button class="btn btn-outline-info btn-rounded  my-4 waves-effect z-depth-0" type="submit">Save
+                            changes</button>
+
+
+                        <p><a href="/login" class="blue-text">Sign In</a></p>
+
+
+                    </div>
+                </form>
+                <!-- Form -->
+
+            </div>
+        </div>
+    </div>
+</div>

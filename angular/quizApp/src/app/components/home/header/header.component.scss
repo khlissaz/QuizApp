@@ -1,0 +1,201 @@
+/* Required for full background image */
+a {
+    text-decoration: none;
+}
+
+.header {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+  min-height: 100vh;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 0rem;
+    transition: all 0.2s;
+    position: relative;
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    background: rgb(245, 201, 4);
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn:active,
+.btn:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--white::after {
+    background-color: #fff;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 0rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+}
+.btn--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+}
+
+
+h1 {
+letter-spacing: 2px;
+}
+
+h5 {
+letter-spacing: 2px;
+}
+
+.hr-light {
+border-top: 3px solid #fff;
+width: 80px;
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    margin-bottom: 3rem;
+}
+
+.heading-primary--main {
+    display: block;
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: 1.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /*
+animation-delay: 3s;
+animation-iteration-count: 3;
+*/
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5rem;
+    word-spacing: 1rem;
+    animation: moveInRight 1s ease-out;
+}
+
+.heading-secondary--sub {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+    word-spacing: 0.4rem;
+    animation: moveInLeft 1s ease-out;
+}
+
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right, #00b0ff, #0d47a1);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 0.2rem;
+    transition: all 0.2s;
+}
+
+.heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.heading-tertiary {
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background-image: linear-gradient(to right, rgba(255, 235, 59, 1), rgba(249, 168, 37, 1));
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 0.2rem;
+    transition: all 0.2s;
+}
+
+.heading-tertiary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    height: 90vh;
+    background-image: linear-gradient( to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url(../../../../assets/images/home-page/15.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+   
+}
+
+.header__logo-box {
+    position: absolute;
+    top: 1rem;
+    left: 2.5rem;
+}
+
+.header__logo {
+    height: 2.5rem;
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+/* ---- reset ---- */
+
+/* ---- reset ---- */
+
+body {
+    margin: 0;
+   // font: normal 100% Arial, Helvetica, sans-serif;
+   font-family: 'Roboto', Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+
+  }
+  
+  canvas {
+    display: block;
+    vertical-align: bottom;
+  }
+  
+  //-- --- particles.js container ---- 
+  #particleJs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #2E3F59;
+  }

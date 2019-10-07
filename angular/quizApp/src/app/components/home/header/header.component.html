@@ -1,0 +1,18 @@
+<div class="home-container">
+    <header class="header">
+        <div id="particles-js">
+            <div class="header__text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary--main">Quiz</span>
+                    <span class="heading-primary--sub">Jouez et testez vos connaissances avec le quiz</span>
+                </h1>
+                <a *ngIf="authService.currentUser === null || !authService.currentUser" routerLink="/register"
+                    class="btn btn--white btn--animated" style="margin-right:2rem">Créer un compte</a>
+                <br>
+                <a href="#content"> <button type="button" class="btn btn-warning btn-circle btn-sm"><i
+                            class="fa fa-chevron-down " aria-hidden="true"></i></button></a>
+
+            </div>
+        </div>
+    </header>
+</div>
