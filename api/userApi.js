@@ -107,24 +107,5 @@ router.get('/getUser/:userName', function (req, res) {
     
 });
 
-router.post('/deleteUser/:id', function (req, res) {
-    User.findByIdAndDelete(req.params.id, function (err, result) {
-        if (err) {
-            throw err;
-        }
-        res.send(result);
-    });
-
-});
-
-router.post('/updateUser/:id', function (req, res) {
-  console.log(req.body)
-    User.findByIdAndUpdate(req.params.id, function (err, result) {
-        if (err) {
-            throw (err);
-        }
-        res.send(result);
-    });
-});
 
 module.exports = router;
